@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
     neu::GetEngine().Initialize();
 
     // initialize scene
-
+     
 
     SDL_Event e;
     bool quit = false;
