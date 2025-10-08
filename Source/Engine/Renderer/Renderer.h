@@ -3,6 +3,7 @@
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_image/SDL_image.h>
 #include <iostream>
+#include <glad/glad.h>
 
 namespace neu {
 	/// <summary>
@@ -14,6 +15,7 @@ namespace neu {
 	class Renderer
 	{
 	public:
+		SDL_GLContext m_context;
 		Renderer() = default;
 
 		/// <summary>
