@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
         if (neu::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
 
 		float angle = neu::GetEngine().GetTime().GetTime()*100;
-		float scale = (std::sinf(SDL_GetTicks() / 500.0f) + .4f) / 2.0f * .1f; // 0
+		float scale = (std::sinf(SDL_GetTicks() / 500.0f) + .4f) / 2.0f * .25f; // 0
 		neu::vec2 mousePos = neu::GetEngine().GetInput().GetMousePosition();
         neu::vec2 position;
 		position.x = neu::math::Remap(0.0f, (float)neu::GetEngine().GetRenderer().GetWidth(), -1.0f, 1.0f, mousePos.x);
