@@ -14,8 +14,23 @@ int main(int argc, char* argv[]) {
     bool quit = false;
 
     //opengl init
-    std::vector<neu::vec3> points{ { -0.5f, -0.5f, 0 }, { 0, 0.5f, 0 }, { 0.5f, -0.5f, 0 } }; 
-    std::vector<neu::vec3> colors{ { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
+    std::vector<neu::vec3> points{ { 0, 0.5f, 0 }, { 0.3535f, -0.3535f, 0 }, { -0.3535f, -0.3535f, 0 }, { 0, -0.5f, 0 }, { 0.3535f, 0.3535f, 0 }, { -0.3535f, 0.3535f, 0 } };
+    std::vector<neu::vec3> colors{ { 0, 0, 1 }, { 1, 0, 0 }, { 0, 1, 0 }, { 1, 1, 0 }, { 1, 0, 1 }, { 0, 1, 1 } };
+
+    /* glColor3f(0,0,255);
+ glVertex3f(0,.5,0);
+ glColor3f(255,0,0);
+ glVertex3f(.3535,-.3535,0);
+ glColor3f(0,255,0);
+ glVertex3f(-.3535,-.3535,0);
+
+ glColor3f(255, 0, 255);
+ glVertex3f(.3535, .3535, 0);
+ glColor3f(0, 255, 255);
+ glVertex3f(-.3535, .3535, 0);
+ glColor3f(255, 255, 0);
+ glVertex3f(0, -.5, 0);  */
+
 
     GLuint vbo;
     glGenBuffers(1, &vbo);
@@ -66,8 +81,7 @@ int main(int argc, char* argv[]) {
         neu::GetEngine().GetRenderer().SetColor(color.r, color.g, color.b);
         neu::GetEngine().GetRenderer().Clear();
 
-       
-
+ 
 		glLoadIdentity();
 		glPushMatrix();
 
@@ -76,22 +90,17 @@ int main(int argc, char* argv[]) {
 		glScalef(scale, scale, 1);
 
 		glBegin(GL_TRIANGLES);
+		//glBegin(GL_LINES);
+		//glBegin(GL_POINTS);
+		//glBegin(GL_LINE_LOOP);
+		//glBegin(GL_TRIANGLE_STRIP);
 
+        for (int i = 0; i < points.size(); i++) {
+            glColor3f(colors[i].r, colors[i].g, colors[i].b);
+            glVertex3f(points[i].x, points[i].y, points[i].z);
+        }
         
-
-        glColor3f(0,0,255);
-        glVertex3f(0,.5,0);
-        glColor3f(255,0,0);
-        glVertex3f(.3535,-.3535,0);
-        glColor3f(0,255,0);
-        glVertex3f(-.3535,-.3535,0);
-
-        glColor3f(255, 0, 255);
-        glVertex3f(.3535, .3535, 0);
-        glColor3f(0, 255, 255);
-        glVertex3f(-.3535, .3535, 0);
-        glColor3f(255, 255, 0);
-        glVertex3f(0, -.5, 0);  
+		glPopMatrix();
 
         glEnd();
 
