@@ -89,11 +89,11 @@ int main(int argc, char* argv[]) {
 		glRotatef(angle, 0, 0, 1);
 		glScalef(scale, scale, 1);
 
-		glBegin(GL_TRIANGLES);
-		//glBegin(GL_LINES);
-		//glBegin(GL_POINTS);
+		glBegin(GL_TRIANGLES); //as designed, makes two overlapping triangles
+		//glBegin(GL_LINES); makes 3 lines of irregular lengths
+		//glBegin(GL_POINTS); creates 6 points
 		//glBegin(GL_LINE_LOOP);
-		//glBegin(GL_TRIANGLE_STRIP);
+		//glBegin(GL_TRIANGLE_STRIP); //makes a star shape like GL_triangles but deformed
 
         for (int i = 0; i < points.size(); i++) {
             glColor3f(colors[i].r, colors[i].g, colors[i].b);
