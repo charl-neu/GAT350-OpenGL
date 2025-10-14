@@ -17,9 +17,6 @@ namespace neu {
 
 		bool Load(const std::string& filename);
 
-		void Draw(class Renderer& renderer, const vec2& position, float rotation, float scale);
-		void Draw(class Renderer& renderer, const Transform& transform);
-
 		float GetRadius() const { return m_radius; }
 
 	private:

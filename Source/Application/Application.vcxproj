@@ -211,6 +211,10 @@
       <Project>{2106e82e-b3c5-4570-bb83-bbf1bb7e5c9b}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\Q4Y1\GAT150\GAT150\Build\Assets\vacationmemories.png" />
+    <Image Include="..\..\Build\Assets\Textures\beast.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
