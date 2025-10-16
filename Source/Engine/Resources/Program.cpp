@@ -37,12 +37,36 @@ namespace neu
 		return true;
 	}
 
+	void Program::Use() {
+		glUseProgram(m_program);
+	}
+
+
 	void Program::SetUniform(const std::string& name, float value) {
 		GLint location = GetUniformLocation(name);
 		if (location != -1) glUniform1f(location, value);
 	}
 
+	void Program::SetUniform(const std::string& name, int value) {
+		GLint location = GetUniformLocation(name);
+		if (location != -1) glUniform1f(location, value);
+	}
+
+	void Program::SetUniform(const std::string& name, unsigned int value) {
+		GLint location = GetUniformLocation(name);
+		if (location != -1) glUniform1f(location, value);
+	}
+
+	void Program::SetUniform(const std::string& name, bool value) {
+		GLint location = GetUniformLocation(name);
+		if (location != -1) glUniform1f(location, value);
+	}
+
 	void Program::SetUniform(const std::string& name, const neu::vec2& value) {
+		GLint location = GetUniformLocation(name);
+		if (location != -1) glUniform2f(location, value.x, value.y);
+	}
+	void Program::SetUniform(const std::string& name, const neu::vec3& value) {
 		GLint location = GetUniformLocation(name);
 		if (location != -1) glUniform2f(location, value.x, value.y);
 	}
