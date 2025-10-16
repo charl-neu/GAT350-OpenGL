@@ -198,14 +198,23 @@ int main(int argc, char* argv[]) {
 	//neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/beast.png");
 	neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/vacationmemories.png");
 
-    /*
+    
     //uniform
-	GLint uniform = glGetUniformLocation(shaderProgram, "u_time");
+	GLint uniform = glGetUniformLocation(program, "u_time");
 	ASSERT(uniform != -1);
 
-	GLint texUniform = glGetUniformLocation(shaderProgram, "u_texture");
+
+	GLint texUniform = glGetUniformLocation(program, "u_texture");
 	glUniform1i(texUniform, 0); //texture unit 0
-    */
+    
+    program->SetUniform("u_texture", 0);
+
+    glm::mat4 model = glm::mat4(1.0f);
+
+    float v = model[3][3];
+    glm::vec3 eye = { 0,0,0 };
+
+
 
     // MAIN LOOP
     while (!quit) {
@@ -220,7 +229,18 @@ int main(int argc, char* argv[]) {
 
         if (neu::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
 
-		glUniform1f(uniform, neu::GetEngine().GetTime().GetTime());
+		glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
+        model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+        program->SetUniform("u_model", model);
+
+		glm::mat4 view = glm::lookAt(eye, glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
+		program->SetUniform("u_view", view);
+
+		float aspect = neu::GetEngine().GetRenderer().GetWidth() / (float)neu::GetEngine().GetRenderer().GetHeight();
+		glm::mat4 projection = glm::perspective(glm::radians(60.0f), aspect, 0.1f, 100.0f);
+		program->SetUniform("u_projection", projection);
 
         /*
 		float angle = neu::GetEngine().GetTime().GetTime()*100;
