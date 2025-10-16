@@ -26,6 +26,7 @@
 // resources
 #include "Resources/Resource.h"
 #include "Resources/ResourceManager.h"
+#include "Resources/Shader.h"
 
 // event manager
 #include "Event/Event.h"
@@ -41,10 +42,8 @@
 #include "Audio/AudioSystem.h"
 
 // renderer
-#include "Renderer/Font.h"
-#include "Renderer/Mesh.h"
+
 #include "Renderer/Renderer.h"
-#include "Renderer/Text.h"
 #include "Renderer/Texture.h"
 #include "Renderer/TextureAnimation.h"
 
@@ -54,9 +53,12 @@
 // third-party library
 #include <fmod.hpp>
 #include <fmod_errors.h>
+
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 #include <SDL3_ttf/SDL_ttf.h>
+
+
 
 // standard library
 #include <string>

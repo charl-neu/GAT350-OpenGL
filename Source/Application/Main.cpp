@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
         neu::vec2 texcoord;
 	};
 
-    /*
+    
     std::vector<Vertex> vertices{
         { { 0, 0.5f, 0 },            { 0, 0, 1 }, { 0.5f, 1 } },
         { { 0.3535f, -0.3535f, 0 },  { 1, 0, 0 }, { 1, (.5 - .3535f) } },
@@ -36,17 +36,19 @@ int main(int argc, char* argv[]) {
         { { 0.3535f, 0.3535f, 0 },   { 1, 0, 1 }, { 1, .8535f}},
         { { -0.3535f, 0.3535f, 0 },  { 0, 1, 1 }, { 0, .8535f } }
     };
-    */
+    
 
+    /*
     std::vector<Vertex> vertices{
         { {-0.5f, 0.5f, 0},  {1, 0, 0}, {0, 1} },
         { {0.5f, 0.5f, 0},   {0, 1, 0}, {1, 1} },
         { {0.5f, -0.5f, 0},  {0, 0, 1}, {1, 0} },
         { {-0.5f, -0.5f, 0}, {1, 1, 0}, {0, 0} }
 	};
+    */
 
-	//std::vector<GLuint> indices{ 0, 1, 2, 3, 4, 5 };
-	std::vector<GLuint> indices{ 0, 1, 2, 2, 3, 0 };
+	std::vector<GLuint> indices{ 0, 1, 2, 3, 4, 5 };
+	//std::vector<GLuint> indices{ 0, 1, 2, 2, 3, 0 };
     
 	//vertex buffer
 	GLuint vbo;
@@ -137,6 +139,8 @@ int main(int argc, char* argv[]) {
 
         LOG_WARNING("Shader compilation failed: {}", infoLog);
     }
+   
+
 
 	//fragment shader
     std::string fs_source;
@@ -157,6 +161,12 @@ int main(int argc, char* argv[]) {
 
         LOG_WARNING("Shader compilation failed: {}", infoLog);
     }
+
+    /*
+    auto vs = neu::Resources().Get<neu::Shader>("shaders/basic.vert", GL_VERTEX_SHADER);
+    auto fs = neu::Resources().Get<neu::Shader>("shaders/basic.frag", GL_FRAGMENT_SHADER);
+    */
+
 
 	GLuint shaderProgram = glCreateProgram();
 	glAttachShader(shaderProgram, fs);
