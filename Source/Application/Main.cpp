@@ -119,6 +119,7 @@ int main(int argc, char* argv[]) {
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, NULL);
     */
 
+    /*
     //vertex shader
     std::string vs_source;
 	neu::file::ReadTextFile("Shaders/basic.vert", vs_source);
@@ -161,13 +162,19 @@ int main(int argc, char* argv[]) {
 
         LOG_WARNING("Shader compilation failed: {}", infoLog);
     }
-
-    /*
+    */
+    
     auto vs = neu::Resources().Get<neu::Shader>("shaders/basic.vert", GL_VERTEX_SHADER);
     auto fs = neu::Resources().Get<neu::Shader>("shaders/basic.frag", GL_FRAGMENT_SHADER);
-    */
+    
 
+    auto program = std::make_shared<neu::Program>();
+    program->AttachShader(vs);
+    program->AttachShader(fs);
+    program->Link();
+    program->Use();
 
+    /*
 	GLuint shaderProgram = glCreateProgram();
 	glAttachShader(shaderProgram, fs);
 	glAttachShader(shaderProgram, vs);
@@ -185,18 +192,20 @@ int main(int argc, char* argv[]) {
     }
 
 	glUseProgram(shaderProgram);
+    */
 
     //texture
 	//neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/beast.png");
 	neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/vacationmemories.png");
 
+    /*
     //uniform
 	GLint uniform = glGetUniformLocation(shaderProgram, "u_time");
 	ASSERT(uniform != -1);
 
 	GLint texUniform = glGetUniformLocation(shaderProgram, "u_texture");
 	glUniform1i(texUniform, 0); //texture unit 0
-
+    */
 
     // MAIN LOOP
     while (!quit) {

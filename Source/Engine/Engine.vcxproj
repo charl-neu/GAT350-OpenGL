@@ -220,6 +220,8 @@
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\Texture.cpp" />
     <ClCompile Include="Renderer\TextureAnimation.cpp" />
+    <ClCompile Include="Resources\Program.cpp" />
+    <ClCompile Include="Resources\Program.h" />
     <ClCompile Include="Resources\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>

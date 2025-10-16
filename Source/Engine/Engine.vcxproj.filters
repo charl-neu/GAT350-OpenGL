@@ -101,6 +101,12 @@
     <ClCompile Include="Resources\Shader.cpp">
       <Filter>Source\Resources</Filter>
     </ClCompile>
+    <ClCompile Include="Resources\Program.h">
+      <Filter>Source\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources\Program.cpp">
+      <Filter>Source\Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">
