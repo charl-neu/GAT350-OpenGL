@@ -1,4 +1,6 @@
 
+#include "Resources/Program.h"
+
 int main(int argc, char* argv[]) {
     neu::file::SetCurrentDirectory("Assets");
     LOG_INFO("current directory {}", neu::file::GetCurrentDirectory());
@@ -200,19 +202,16 @@ int main(int argc, char* argv[]) {
 
     
     //uniform
-	GLint uniform = glGetUniformLocation(program, "u_time");
-	ASSERT(uniform != -1);
+	//program->SetUniform("u_time", 0.0f);
+	//GLint uniform = glGetUniformLocation(program->m_program, "u_time");
+	//ASSERT(uniform != -1);
 
-
-	GLint texUniform = glGetUniformLocation(program, "u_texture");
-	glUniform1i(texUniform, 0); //texture unit 0
-    
     program->SetUniform("u_texture", 0);
 
     glm::mat4 model = glm::mat4(1.0f);
 
     float v = model[3][3];
-    glm::vec3 eye = { 0,0,0 };
+    glm::vec3 eye = { 0, 0, 5 };
 
 
 
@@ -235,7 +234,9 @@ int main(int argc, char* argv[]) {
         model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
         program->SetUniform("u_model", model);
 
-		glm::mat4 view = glm::lookAt(eye, glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
+		eye.x = neu::GetEngine().GetInput().GetMousePosition().x / 1000.0f;
+		eye.y = neu::GetEngine().GetInput().GetMousePosition().y / 1000.0f;
+		glm::mat4 view = glm::lookAt(eye, eye + glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
 		program->SetUniform("u_view", view);
 
 		float aspect = neu::GetEngine().GetRenderer().GetWidth() / (float)neu::GetEngine().GetRenderer().GetHeight();
