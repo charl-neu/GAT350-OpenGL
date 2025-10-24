@@ -43,10 +43,11 @@
 #include "Audio/AudioSystem.h"
 
 // renderer
-
 #include "Renderer/Renderer.h"
 #include "Renderer/Texture.h"
 #include "Renderer/TextureAnimation.h"
+#include "Renderer/VertexBuffer.h"
+#include "Renderer/Model.h"
 
 // physics
 #include "Physics/Collidable.h"

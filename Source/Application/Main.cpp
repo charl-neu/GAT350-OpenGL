@@ -1,4 +1,3 @@
-
 #include "Resources/Program.h"
 
 int main(int argc, char* argv[]) {
@@ -40,7 +39,7 @@ int main(int argc, char* argv[]) {
     };
     
 
-    /*
+    /* square
     std::vector<Vertex> vertices{
         { {-0.5f, 0.5f, 0},  {1, 0, 0}, {0, 1} },
         { {0.5f, 0.5f, 0},   {0, 1, 0}, {1, 1} },
@@ -49,39 +48,20 @@ int main(int argc, char* argv[]) {
 	};
     */
 
-	std::vector<GLuint> indices{ 0, 1, 2, 3, 4, 5 };
+	std::vector<GLushort> indices{ 0, 1, 2, 3, 4, 5 };
 	//std::vector<GLuint> indices{ 0, 1, 2, 2, 3, 0 };
-    
+
 	//vertex buffer
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
+	//neu::res_t<neu::VertexBuffer> vb = std::make_shared<neu::VertexBuffer>();
+	//vb->CreateVertexBuffer((GLsizei)(vertices.size() * sizeof(Vertex)), (GLsizei)vertices.size(), vertices.data());
+	//vb->CreateIndexBuffer(GL_UNSIGNED_SHORT, (GLsizei)indices.size(), indices.data());
+	//vb->SetAttribute(0, 3, sizeof(Vertex), offsetof(Vertex, position));
+	//vb->SetAttribute(1, 3, sizeof(Vertex), offsetof(Vertex, color));
+	//vb->SetAttribute(2, 2, sizeof(Vertex), offsetof(Vertex, texcoord));
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
-
-	//index buffer
-	GLuint ibo;
-	glGenBuffers(1, &ibo);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), indices.data(), GL_STATIC_DRAW);
-
-	//vertex array
-	GLuint vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-	glEnableVertexAttribArray(2);
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, position));
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, color));
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texcoord));
-
-
+    auto model3d = std::make_shared<neu::Model>();
+    model3d->Load("models/torus.obj");
+    
 
     /*
     GLuint vbo[3];
@@ -170,10 +150,7 @@ int main(int argc, char* argv[]) {
     auto fs = neu::Resources().Get<neu::Shader>("shaders/basic.frag", GL_FRAGMENT_SHADER);
     
 
-    auto program = std::make_shared<neu::Program>();
-    program->AttachShader(vs);
-    program->AttachShader(fs);
-    program->Link();
+	auto program = neu::Resources().Get<neu::Program>("programs/basiclit.prog");
     program->Use();
 
     /*
@@ -208,10 +185,17 @@ int main(int argc, char* argv[]) {
 
     program->SetUniform("u_texture", 0);
 
+    //lights
+    program->SetUniform("u_ambient_light", glm::vec3{0.5f});
+	neu::Transform light{ { 0, .5, .5 } };
+
     glm::mat4 model = glm::mat4(1.0f);
 
     float v = model[3][3];
-    glm::vec3 eye = { 0, 0, 5 };
+    glm::vec3 eye = { 0, 0, 6 };
+
+    neu::Transform transform{ { 0,0,0 } };
+    neu::Transform camera{ {0,0,5} };
 
 
 
@@ -225,19 +209,42 @@ int main(int argc, char* argv[]) {
 
         // update
         neu::GetEngine().Update();
+        float dt = neu::GetEngine().GetTime().GetDeltaTime();
 
         if (neu::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
 
-		glm::mat4 model = glm::mat4(1.0f);
+        //model matrix
+		/*glm::mat4 model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
         model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
         model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
-        program->SetUniform("u_model", model);
+        program->SetUniform("u_model", model);*/
 
-		eye.x = neu::GetEngine().GetInput().GetMousePosition().x / 1000.0f;
+		transform.rotation.x += glm::radians(45.0f) * dt;
+
+		program->SetUniform("u_model", transform.GetMatrix());
+
+		//view matrix
+		/*eye.x = neu::GetEngine().GetInput().GetMousePosition().x / 1000.0f;
 		eye.y = neu::GetEngine().GetInput().GetMousePosition().y / 1000.0f;
 		glm::mat4 view = glm::lookAt(eye, eye + glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
+		program->SetUniform("u_view", view);*/
+
+		//view matrix camera controls
+        float speed = 10.0f;
+        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_A)) camera.position.x -= speed * dt;
+        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_D)) camera.position.x += speed * dt;
+		if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_W)) camera.position.z -= speed * dt;
+        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_S)) camera.position.z += speed * dt;
+        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_SPACE)) camera.position.y += speed * dt;
+		if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_LSHIFT)) camera.position.y -= speed * dt;
+		glm::mat4 view = glm::lookAt(camera.position, camera.position + glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
 		program->SetUniform("u_view", view);
+
+		program->SetUniform("u_light.color", glm::vec3{1, 1, 1});
+		light.position.x = neu::math::sinf(neu::GetEngine().GetTime().GetTime()*2) * 5.0f;
+		program->SetUniform("u_light.position", (glm::vec3)(view * glm::vec4(light.position, 1)));
+
 
 		float aspect = neu::GetEngine().GetRenderer().GetWidth() / (float)neu::GetEngine().GetRenderer().GetHeight();
 		glm::mat4 projection = glm::perspective(glm::radians(60.0f), aspect, 0.1f, 100.0f);
@@ -255,11 +262,11 @@ int main(int argc, char* argv[]) {
         neu::vec3 color{ 0, 0, 0 };
         neu::GetEngine().GetRenderer().SetColor(color.r, color.g, color.b);
         */
+
         neu::GetEngine().GetRenderer().Clear();
 
-		glBindVertexArray(vao);
-		//glDrawArrays(GL_TRIANGLES, 0, (GLsizei)points.size());
-		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+		//vb->Draw(GL_TRIANGLES);
+        model3d->Draw(GL_TRIANGLES);
 
 
         neu::GetEngine().GetRenderer().Present();
