@@ -150,7 +150,7 @@ int main(int argc, char* argv[]) {
     auto fs = neu::Resources().Get<neu::Shader>("shaders/basic.frag", GL_FRAGMENT_SHADER);
     
 
-	auto program = neu::Resources().Get<neu::Program>("programs/basiclit.prog");
+	auto program = neu::Resources().Get<neu::Program>("shaders/basiclit.prog");
     program->Use();
 
     /*
@@ -265,9 +265,20 @@ int main(int argc, char* argv[]) {
 
         neu::GetEngine().GetRenderer().Clear();
 
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplSDL3_NewFrame();
+		ImGui::NewFrame();
+
+		ImGui::Begin("Info");
+		ImGui::Text("Hello World");
+		ImGui::Text("Press 'Esc' to quit.");
+		ImGui::End();
+
 		//vb->Draw(GL_TRIANGLES);
         model3d->Draw(GL_TRIANGLES);
 
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         neu::GetEngine().GetRenderer().Present();
     }
