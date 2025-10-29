@@ -17,6 +17,9 @@
     <Filter Include="Assets\Materials">
       <UniqueIdentifier>{19b49d01-bd99-4582-a3c5-87f5a0ce65b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Scenes">
+      <UniqueIdentifier>{cc14a0d9-233b-433c-9f9c-dbda3a3da581}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -67,5 +70,10 @@
     <Image Include="..\..\..\..\..\Q4Y1\GAT150\GAT150\Build\Assets\vacationmemories.png">
       <Filter>Assets\Textures</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\Build\Assets\Scenes\scene01.json">
+      <Filter>Assets\Scenes</Filter>
+    </Text>
   </ItemGroup>
 </Project>

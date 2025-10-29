@@ -222,6 +222,9 @@
     <Image Include="..\..\..\..\..\Q4Y1\GAT150\GAT150\Build\Assets\vacationmemories.png" />
     <Image Include="..\..\Build\Assets\Textures\beast.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\Build\Assets\Scenes\scene01.json" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

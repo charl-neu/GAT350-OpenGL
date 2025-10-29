@@ -12,29 +12,11 @@ int main(int argc, char* argv[]) {
     SDL_Event e;
     bool quit = false;
 
-
-	//interleaved vertex data
-    struct Vertex {
-        neu::vec3 position;
-		neu::vec3 color;
-        neu::vec2 texcoord;
-	};
-
-    
-    std::vector<Vertex> vertices{
-        { { 0, 0.5f, 0 },            { 0, 0, 1 }, { 0.5f, 1 } },
-        { { 0.3535f, -0.3535f, 0 },  { 1, 0, 0 }, { 1, (.5 - .3535f) } },
-        { { -0.3535f, -0.3535f, 0 }, { 0, 1, 0 }, { 0, (.5 - .3535f) } },
-        { { 0, -0.5f, 0 },           { 1, 1, 0 }, { 0.5f, 0 } },
-        { { 0.3535f, 0.3535f, 0 },   { 1, 0, 1 }, { 1, .8535f}},
-        { { -0.3535f, 0.3535f, 0 },  { 0, 1, 1 }, { 0, .8535f } }
-    };
-
-	std::vector<GLushort> indices{ 0, 1, 2, 3, 4, 5 };
-	//std::vector<GLuint> indices{ 0, 1, 2, 2, 3, 0 };
+    auto scene = std::make_unique<neu::Scene>();
+    scene->Load("scenes/scene01.json");
 
     auto model3d = std::make_shared<neu::Model>();
-    model3d->Load("models/teapot.obj");
+    model3d->Load("models/cube.obj");
 
     //material
     auto material = neu::Resources().Get<neu::Material>("materials/spot.mat");
@@ -72,6 +54,8 @@ int main(int argc, char* argv[]) {
 
         if (neu::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
 
+        scene->Update(dt);
+
 
 		transform.rotation.x += glm::radians(45.0f) * dt;
 
@@ -105,15 +89,15 @@ int main(int argc, char* argv[]) {
 		ImGui::NewFrame();
 
 		ImGui::Begin("Info");
-		ImGui::DragFloat3("Position", glm::value_ptr(light.position), 0.1f);
-		ImGui::ColorEdit3("Color", glm::value_ptr(lightColor), 0.1f);
-        light.UpdateGui();
+        //light.UpdateGui();
         transform.UpdateGui();
         material->UpdateGui();
 		ImGui::End();
 
 		//vb->Draw(GL_TRIANGLES);
         model3d->Draw(GL_TRIANGLES);
+
+        scene->Draw(neu::GetEngine().GetRenderer());
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

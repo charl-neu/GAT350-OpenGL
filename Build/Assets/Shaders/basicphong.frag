@@ -6,16 +6,6 @@ in vec3 v_normal;
 
 out vec4 f_color;
 
-uniform struct Light
-{
-	vec3 position;
-	vec3 color;
-} u_light;
-
-uniform vec3 u_ambient_light;
-uniform sampler2D u_texture;
-
-
 
 uniform struct Material
 {
@@ -26,6 +16,15 @@ uniform struct Material
 	vec2 tiling;
 	vec2 offset;
 } u_material;
+
+uniform struct Light
+{
+	vec3 position;
+	vec3 color;
+} u_light;
+
+uniform vec3 u_ambient_light;
+uniform sampler2D u_texture;
 
 vec3 calculateLight(in vec3 position, in vec3 normal)
 {
