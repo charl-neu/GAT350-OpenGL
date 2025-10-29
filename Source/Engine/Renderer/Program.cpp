@@ -39,7 +39,7 @@ namespace neu
 		// get/add vertex shader
 		SERIAL_READ_NAME(document, "fragment_shader", shaderName);
 		if (!shaderName.empty()) {
-			auto shader = neu::Resources().Get<neu::Shader>(shaderName, GL_VERTEX_SHADER);
+			auto shader = neu::Resources().Get<neu::Shader>(shaderName, GL_FRAGMENT_SHADER);
 			if (!shader) {
 				LOG_WARNING("Could not get fragment shader: {}", shaderName);
 				glDeleteProgram(m_program);

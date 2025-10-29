@@ -26,8 +26,6 @@
 // resources
 #include "Resources/Resource.h"
 #include "Resources/ResourceManager.h"
-#include "Resources/Shader.h"
-//#include "Resources/Program.h"
 
 // event manager
 #include "Event/Event.h"
@@ -48,6 +46,9 @@
 #include "Renderer/TextureAnimation.h"
 #include "Renderer/VertexBuffer.h"
 #include "Renderer/Model.h"
+#include "Renderer/Shader.h"
+#include "Renderer/Program.h"
+#include "Renderer/Material.h"
 
 // physics
 #include "Physics/Collidable.h"

@@ -98,15 +98,6 @@
     <ClCompile Include="..\ThirdParty\glad\src\glad.c">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Resources\Shader.cpp">
-      <Filter>Source\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="Resources\Program.h">
-      <Filter>Source\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="Resources\Program.cpp">
-      <Filter>Source\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer\VertexBuffer.cpp">
       <Filter>Source\Renderer</Filter>
     </ClCompile>
@@ -130,6 +121,15 @@
     </ClCompile>
     <ClCompile Include="..\ThirdParty\imgui\backends\imgui_impl_sdl3.cpp">
       <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Material.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Program.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Shader.cpp">
+      <Filter>Source\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -241,13 +241,22 @@
     <ClInclude Include="Audio\AudioChannel.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Resources\Shader.h">
-      <Filter>Source\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Renderer\VertexBuffer.h">
       <Filter>Source\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\Model.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Material.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Shader.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Program.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\GUI.h">
       <Filter>Source\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
