@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "Renderer/GUI.h"
 #include "Core/Serializable.h"
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
@@ -8,7 +7,7 @@
 
 namespace neu {
 
-    struct Transform : public ISerializable, GUI {
+    struct Transform : public ISerializable , public GUI {
         glm::vec3 position{ 0, 0, 0 };
         glm::quat rotationq{ glm::identity<glm::quat>() };
         glm::vec3 scale{ 1, 1, 1 };
