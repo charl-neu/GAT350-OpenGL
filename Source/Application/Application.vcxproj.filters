@@ -62,6 +62,9 @@
     <None Include="..\..\Build\Assets\Shaders\basicphong.prog">
       <Filter>Assets\Shaders</Filter>
     </None>
+    <None Include="..\..\Build\Assets\Scenes\scene02.json">
+      <Filter>Assets\Scenes</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Build\Assets\Textures\beast.png">
