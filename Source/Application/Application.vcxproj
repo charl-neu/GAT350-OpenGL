@@ -203,7 +203,10 @@
     <ClInclude Include="ApplicationPCH.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Build\Assets\Materials\cow.mat" />
+    <None Include="..\..\Build\Assets\Materials\lava.mat" />
     <None Include="..\..\Build\Assets\Materials\spot.mat" />
+    <None Include="..\..\Build\Assets\Materials\squirrel.mat" />
     <None Include="..\..\Build\Assets\Scenes\scene02.json" />
     <None Include="..\..\Build\Assets\Shaders\basic.vert" />
     <None Include="..\..\Build\Assets\Shaders\basic.frag" />
