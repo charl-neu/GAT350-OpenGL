@@ -30,8 +30,8 @@ uniform struct Light
 	vec3 color;
 	float intensity;
 	float range;
-	float innerCutoff;
-	float outerCutoff;
+	float innerSpotAngle;
+	float outerSpotAngle;
 };
 
 uniform struct Material
@@ -73,19 +73,21 @@ vec3 calculateLight(in Light light, vec3 position, in vec3 normal)
 		case DIRECTIONAL:
 			light_dir = light.direction;
 		break;
-
 		case SPOT:
 			{
-				light_dir = normalize(light.position - position);
+				vec3 L = normalize(light.position - position);
 				float light_distance = length(light.position - position);
 				attenuation = calculateAttenuation(light_distance, light.range);
 
-				float angle = acos(dot(light_dir, light.direction));
-				if (angle > light.outerCutoff) attenuation = 0;
+				float angle = acos(dot(light_dir, normalize(light.direction)));
+				float spotAttenuation = 0;
+				if (angle > light.outerSpotAngle)
+					attenuation = 0;
 				else {
-					float spotAttenuation = smoothstep(light.outerCutoff+.02f, light.innerCutoff, angle);
-					attenuation *= spotAttenuation;
-				}
+					spotAttenuation = smoothstep(light.outerSpotAngle + 0.001, light.innerSpotAngle, angle);
+				}	
+				// Combine distance and angular attenuation
+				attenuation *= spotAttenuation;
 			}
 		break;
 	}

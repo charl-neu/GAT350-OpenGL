@@ -16,7 +16,8 @@ namespace neu {
 		program.SetUniform(name + ".color", color);
 		program.SetUniform(name + ".intensity", intensity);
 		program.SetUniform(name + ".range", range);
-		program.SetUniform(name + ".outerCutoff", outerCutoff);
+		program.SetUniform(name + ".innerSpotAngle", innerSpotAngle);
+		program.SetUniform(name + ".outerSpotAngle", outerSpotAngle);
 
 	}
 	void LightComponent::Read(const serial_data_t& value) {
@@ -29,8 +30,8 @@ namespace neu {
 		SERIAL_READ(value, color);
 		SERIAL_READ(value, intensity);
 		SERIAL_READ(value, range);
-		SERIAL_READ(value, innerCutoff);
-		SERIAL_READ(value, outerCutoff);
+		SERIAL_READ(value, innerSpotAngle);
+		SERIAL_READ(value, outerSpotAngle);
 	}
 	void LightComponent::UpdateGui() {
 		const char* types[] = { "Point", "Directional", "Spot" };
@@ -42,8 +43,8 @@ namespace neu {
 			ImGui::DragFloat("Range", &range, .1f, .1f);
 		}
 		if (lightType == LightType::Spot) {
-			ImGui::DragFloat("innerCutoff", &innerCutoff, 0.1f, 0.0f, outerCutoff);
-			ImGui::DragFloat("OuterCutoff", &outerCutoff, 0.1f, innerCutoff);
+			ImGui::DragFloat("innerCutoff", &innerSpotAngle, 0.1f, 0.0f, outerSpotAngle);
+			ImGui::DragFloat("OuterCutoff", &outerSpotAngle, 0.1f, innerSpotAngle);
 
 
 		}
