@@ -13,6 +13,7 @@ out VS_OUT
 {
 	vec2 texcoord;
 	vec3 color;
+	vec3 normal;
 } vs_out;
 
 
@@ -85,22 +86,30 @@ vec3 calculateLight(in Light light, vec3 position, in vec3 normal)
 					attenuation = 0;
 				else {
 					spotAttenuation = smoothstep(light.outerSpotAngle + 0.001, light.innerSpotAngle, angle);
+					attenuation *= spotAttenuation;
 				}	
-				// Combine distance and angular attenuation
-				attenuation *= spotAttenuation;
+				
 			}
 		break;
 	}
 	//Diffuse lighting
-	float intensity = max(dot(light_dir, normal), 0);
-	vec3 diffuse = light.color * u_material.baseColor * intensity;
+	float NdotL = max(dot(light_dir, normal), 0);
+	vec3 diffuse = light.color * u_material.baseColor * NdotL;
 
 	//specular
 	vec3 reflection = reflect(-light_dir, normal);
 	vec3 view_dir = normalize(-position);
+
+	vec3 halfway_dir = normalize(light_dir + view_dir);
+	float NdotH = max(dot(normal, halfway_dir), 0);
+	NdotH = pow(NdotH, u_material.shininess);
+	vec3 specular = vec3(NdotH);
+
+	vec3 reflecion;
+	/*
 	float specintensity = pow(max(dot(reflection, view_dir), 0), u_material.shininess);
 	vec3 specular = vec3(specintensity);
-
+	*/
 	
 
 	return (diffuse + specular) * light.intensity * attenuation;

@@ -213,6 +213,9 @@
     <None Include="..\..\Build\Assets\Shaders\basiclit.frag" />
     <None Include="..\..\Build\Assets\Shaders\basiclit.prog" />
     <None Include="..\..\Build\Assets\Shaders\basiclit.vert" />
+    <None Include="..\..\Build\Assets\Shaders\basicphong - Copy.frag" />
+    <None Include="..\..\Build\Assets\Shaders\basicphong - Copy.prog" />
+    <None Include="..\..\Build\Assets\Shaders\basicphong - Copy.vert" />
     <None Include="..\..\Build\Assets\Shaders\basicphong.frag" />
     <None Include="..\..\Build\Assets\Shaders\basicphong.prog" />
     <None Include="..\..\Build\Assets\Shaders\basicphong.vert" />

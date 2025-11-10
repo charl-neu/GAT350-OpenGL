@@ -1,5 +1,5 @@
 {
-	"program" : "Shaders/basiclit.prog",
+	"program" : "Shaders/basicphong.prog",
 	"baseMap": "Textures/squirrel_base.png",
 	"baseColor": [1, 1, 1],
 	"shininess" : 16,
