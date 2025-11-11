@@ -1,7 +1,10 @@
 {
 	"program": "Shaders/litphong.prog",
 	"baseMap": "Textures/lava_base.png",
-	"baseColor": [1, 1, 1],
+	"baseColor": [ 1, 1, 1 ],
+	"emissiveMap": "Textures/lava_emissive.png",
+	"emissiveColor": [ 1, 1, 1 ],
+	"normalMap": "Textures/lava_normal.png",
 	"shininess": 16,
 	"tiling": [ 10, 10 ],
 	"offset": [ 0, 0 ]

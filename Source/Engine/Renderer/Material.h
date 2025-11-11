@@ -32,6 +32,7 @@ namespace neu {
 		res_t<Texture> specularMap;
 		res_t<Texture> emissiveMap;
 		glm::vec3 emissiveColor{ 0,0,0 };
+		res_t<Texture> normalMap;
 
 		float shininess{ 2 };
 		glm::vec2 tiling{ 1,1 };
