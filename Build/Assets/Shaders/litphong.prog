@@ -1,0 +1,4 @@
+{
+	"vertex_shader": "Shaders/litphong.vert",
+	"fragment_shader": "Shaders/litphong.frag"
+}

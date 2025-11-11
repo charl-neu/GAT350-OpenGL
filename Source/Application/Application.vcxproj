@@ -204,21 +204,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Build\Assets\Materials\cow.mat" />
+    <None Include="..\..\Build\Assets\Materials\crate.mat" />
     <None Include="..\..\Build\Assets\Materials\lava.mat" />
     <None Include="..\..\Build\Assets\Materials\spot.mat" />
     <None Include="..\..\Build\Assets\Materials\squirrel.mat" />
     <None Include="..\..\Build\Assets\Scenes\scene02.json" />
+    <None Include="..\..\Build\Assets\Scenes\scene03.json" />
     <None Include="..\..\Build\Assets\Shaders\basic.vert" />
     <None Include="..\..\Build\Assets\Shaders\basic.frag" />
-    <None Include="..\..\Build\Assets\Shaders\basiclit.frag" />
-    <None Include="..\..\Build\Assets\Shaders\basiclit.prog" />
-    <None Include="..\..\Build\Assets\Shaders\basiclit.vert" />
+    <None Include="..\..\Build\Assets\Shaders\lit_vertex.frag" />
+    <None Include="..\..\Build\Assets\Shaders\lit_vertex.prog" />
+    <None Include="..\..\Build\Assets\Shaders\lit_vertex.vert" />
     <None Include="..\..\Build\Assets\Shaders\basicphong - Copy.frag" />
     <None Include="..\..\Build\Assets\Shaders\basicphong - Copy.prog" />
     <None Include="..\..\Build\Assets\Shaders\basicphong - Copy.vert" />
-    <None Include="..\..\Build\Assets\Shaders\basicphong.frag" />
-    <None Include="..\..\Build\Assets\Shaders\basicphong.prog" />
-    <None Include="..\..\Build\Assets\Shaders\basicphong.vert" />
+    <None Include="..\..\Build\Assets\Shaders\litphong.frag" />
+    <None Include="..\..\Build\Assets\Shaders\litphong.prog" />
+    <None Include="..\..\Build\Assets\Shaders\litphong.vert" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">

@@ -1,5 +1,5 @@
 {
-	"program" : "Shaders/basicphong.prog",
+	"program": "Shaders/litphong.prog",
 	"baseMap": "Textures/rocks_base.jpg",
 	"baseColor": [1, 1, 1],
 	"shininess" : 128,

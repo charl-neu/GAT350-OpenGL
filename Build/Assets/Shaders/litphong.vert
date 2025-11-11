@@ -11,18 +11,19 @@ out VS_OUT
 	vec2 texcoord;
 	vec3 color;
 	vec3 normal;
+	vec3 position;
 } vs_out;
 
 
 
 uniform struct Material
 {
-	sampler2D baseMap;
 	vec3 baseColor;
-
+	vec3 emissiveColor;
 	float shininess;
 	vec2 tiling;
 	vec2 offset;
+	uint parameters;
 } u_material;
 
 uniform mat4 u_model;
@@ -41,7 +42,7 @@ void main()
 	vs_out.texcoord = (a_texcoord * u_material.tiling) + u_material.offset;
 
 	mat4 model_view = u_view * u_model;
-	vec3 v_position = vec3(model_view * vec4(a_position, 1));
+	vs_out.position = vec3(model_view * vec4(a_position, 1));
 	vs_out.normal = normalize(mat3(model_view) * a_normal);
 	
 	gl_Position = u_projection * u_view * u_model * vec4(a_position, 1.0);

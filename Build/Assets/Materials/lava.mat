@@ -1,8 +1,8 @@
 {
-	"program" : "Shaders/basicphong.prog",
+	"program": "Shaders/litphong.prog",
 	"baseMap": "Textures/lava_base.png",
 	"baseColor": [1, 1, 1],
-	"shininess" : 16,
-	"tiling" : [ 10, 10 ],
-	"offset" : [ 0, 0 ]
+	"shininess": 16,
+	"tiling": [ 10, 10 ],
+	"offset": [ 0, 0 ]
 }
