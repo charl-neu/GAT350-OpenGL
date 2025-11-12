@@ -1,0 +1,4 @@
+{
+	"program": "shaders/skybox.prog",
+	"cubeMap": "Textures/Rainbow/posx.jpg textures/Rainbow/negx.jpg textures/Rainbow/posy.jpg textures/Rainbow/negy.jpg textures/Rainbow/posz.jpg textures/Rainbow/negz.jpg"
+}
