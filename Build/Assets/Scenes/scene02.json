@@ -26,7 +26,7 @@
 					"model": "Models/cube.obj",
 					"material": "Materials/skybox.mat",
 					"enableDepth": false,
-          "cullFace": "front"
+					"cullFace": "front"
 				}
 			]
 		},
@@ -55,6 +55,34 @@
 					"type": "ModelRenderer",
 					"model": "Models/cube.obj",
 					"material": "Materials/crate.mat"
+				}
+			]
+		},
+		{
+			"name": "spot",
+			"persistent": true,
+			"transform": {
+				"position": [
+					5,
+					0,
+					0
+				],
+				"rotation": [
+					0,
+					180,
+					0
+				],
+				"scale": [
+					1,
+					1,
+					1
+				]
+			},
+			"components": [
+				{
+					"type": "ModelRenderer",
+					"model": "Models/spot.obj",
+					"material": "Materials/reflection.mat"
 				}
 			]
 		},
