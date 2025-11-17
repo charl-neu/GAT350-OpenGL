@@ -40,6 +40,8 @@ namespace neu {
 		// Allow Renderer class to access the texture for drawing operations
 		friend class Renderer;
 
+		void UpdateGui() override;
+
 		GLuint m_texture{ 0 }; // The OpenGL texture ID
 	public:
 		GLenum m_target = GL_TEXTURE_2D ; // The texture target (e.g., GL_TEXTURE_2D)

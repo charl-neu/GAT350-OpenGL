@@ -1,3 +1,4 @@
+/*
 #version 460 core
 
 in vec2 v_texcoord;
@@ -48,3 +49,4 @@ void main()
 	vec3 color = calculateLight(v_position, v_normal);
 	f_color = texture(u_texture, v_texcoord) * vec4(color, 1);
 }
+*/

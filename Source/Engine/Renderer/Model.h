@@ -18,10 +18,13 @@ namespace neu {
 	public:
 		bool Load(const std::string& filename);
 		void Draw(GLenum primitiveType = GL_TRIANGLES);
+		void UpdateGui() override {}
 	private:
 		void ProcessNode(aiNode* node, const aiScene* scene);
 		void ProcessMesh(aiMesh* mesh, const aiScene* scene);
 	private:
 		std::vector<res_t<VertexBuffer>> m_vertexBuffers;
+
+
 	};
 }

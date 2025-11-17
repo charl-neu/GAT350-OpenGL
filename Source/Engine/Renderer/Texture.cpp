@@ -57,4 +57,11 @@ namespace neu {
 
         return true;
     } 
+
+    void Texture::UpdateGui() {
+        ImGui::Text("Texture ID: %d", file::GetFilename(name).c_str());
+        ImGui::Text("Size: %d x %d", (int)m_size.x, (int)m_size.y);
+		Editor::ShowTexture(*this, 64, 64);
+
+	}
 }
