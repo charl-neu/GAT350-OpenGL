@@ -113,15 +113,15 @@ namespace neu {
 
 			if (specularMap) {
 				ImGui::Text("Specular Map:");
-				Editor::ShowTexture(*baseMap, 100, 100);
-				Editor::GetDialogResource<Texture>(baseMap, "SpecularMapDialog", "Open Texture", "Image (*.png;*.jpg;*.bmp;*.jpeg;*.tga){.png,.jpg,.bmp,.jpeg,.tga},.*");
+				Editor::ShowTexture(*specularMap, 100, 100);
+				Editor::GetDialogResource<Texture>(specularMap, "SpecularMapDialog", "Open Texture", "Image (*.png;*.jpg;*.bmp;*.jpeg;*.tga){.png,.jpg,.bmp,.jpeg,.tga},.*");
 			}
-				ImGui::ColorEdit3("Specular Color", glm::value_ptr(baseColor));
+			ImGui::ColorEdit3("Specular Color", glm::value_ptr(specularColor));
 
 			if (emissiveMap) {
 				ImGui::Text("Emissive Map:");
-				Editor::ShowTexture(*baseMap, 100, 100);
-				Editor::GetDialogResource<Texture>(baseMap, "EmissiveMapDialog", "Open Texture", "Image (*.png;*.jpg;*.bmp;*.jpeg;*.tga){.png,.jpg,.bmp,.jpeg,.tga},.*");
+				Editor::ShowTexture(*emissiveMap, 100, 100);
+				Editor::GetDialogResource<Texture>(emissiveMap, "EmissiveMapDialog", "Open Texture", "Image (*.png;*.jpg;*.bmp;*.jpeg;*.tga){.png,.jpg,.bmp,.jpeg,.tga},.*");
 			}
 				ImGui::ColorEdit3("Emissive Color", glm::value_ptr(emissiveColor));
 

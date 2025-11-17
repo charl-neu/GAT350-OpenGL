@@ -33,6 +33,7 @@ namespace neu {
 		res_t<Texture> baseMap;
 		glm::vec3 baseColor{ 1,1,1 };
 		res_t<Texture> specularMap;
+		glm::vec3 specularColor{ 1,1,1 };
 		res_t<Texture> emissiveMap;
 		glm::vec3 emissiveColor{ 0,0,0 };
 		res_t<Texture> normalMap;
