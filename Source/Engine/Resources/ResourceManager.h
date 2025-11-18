@@ -68,6 +68,10 @@ namespace neu {
         template<typename T = Resource>
 			requires std::derived_from<T, Resource>
         std::vector<T*> GetByType();
+
+		template<typename T = Resource>
+			requires std::derived_from<T, Resource>
+        bool AddResource(const std::string& name, res_t<T> resource);
     private:
         /// <summary>
         /// Friend declaration to allow Singleton base class access to private constructor
@@ -162,6 +166,23 @@ namespace neu {
             }
         }
         return resources;
+	}
+
+	template<typename T>
+		requires std::derived_from<T, Resource>
+    inline bool ResourceManager::AddResource(const std::string& name, res_t<T> resource)
+    {
+		std::string key = toLower(name);
+
+		auto iter = m_resources.find(key);
+        if (iter != m_resources.end())
+        {
+            LOG_WARNING("Resource already exists: {}", name);
+            return false;
+        }
+		resource->name = key;
+		m_resources[key] = resource;
+        return true;
 	}
 
     /// <summary>

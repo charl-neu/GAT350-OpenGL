@@ -1,8 +1,9 @@
 {
-	"program" : "Shaders/litphong.prog",
-	"baseMap": "Textures/squirrel_base.png",
-	"baseColor": [1, 1, 1],
-	"shininess" : 16,
-	"tiling" : [ 1, 1 ],
-	"offset" : [ 0, 0 ]
+	"program": "shaders/lit_phong.prog",
+	"baseMap": "textures/squirrel_base.png",
+	"normalMap": "textures/squirrel_normal.png",
+	"baseColor": [ 1, 1, 1 ],
+	"shininess": 128,
+	"tiling": [ 1, 1 ],
+	"offset": [ 0, 0 ]
 }

@@ -159,5 +159,8 @@ void main()
 	vec4 emissive = ((u_material.parameters & EMISSIVE_MAP) != 0u) 
 		? texture(u_emissiveMap, fs_in.texcoord) * vec4(u_material.emissiveColor, 1)
 		: vec4(u_material.emissiveColor, 1);
+
 	f_color = texture(u_baseMap, fs_in.texcoord) * vec4(color, 1) + emissive;
+
+	//f_color = vec4(gl_FragCoord.x / 1920.0, gl_FragCoord.y / 1080.0, gl_FragCoord.z, 1);
 }

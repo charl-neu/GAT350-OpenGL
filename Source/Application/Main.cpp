@@ -11,6 +11,10 @@ int main(int argc, char* argv[]) {
     SDL_Event e;
     bool quit = false;
 
+	auto rendertexture = std::make_shared<neu::RenderTexture>();
+	rendertexture->Create(512, 512);
+	neu::Resources().AddResource<neu::Texture>("rendertexture", rendertexture);
+
     auto scene = std::make_unique<neu::Scene>();
     scene->Load("scenes/scene02.json");
     scene->Start();

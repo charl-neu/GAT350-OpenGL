@@ -20,7 +20,9 @@ namespace neu {
 			glDisable(GL_CULL_FACE);
 		}
 
+		if (model) {
 		model->Draw(GL_TRIANGLES);
+		}
 	}
 
 	void ModelRenderer::Read(const serial_data_t& value) {
@@ -47,15 +49,15 @@ namespace neu {
 	}
 	void ModelRenderer::UpdateGui()
 	{
-		if (model)
-		{
-			ImGui::Text("Model: %s", model->name.c_str());
-			Editor::GetDialogResource<Model>(model, "ModelDialog", "Open model", "Model file (*.obj;*.fbx){.obj,.fbx},.*");
-		}
-		if (material)
-		{
-			ImGui::Text("Material: %s", material->name.c_str());
-			Editor::GetDialogResource<Model>(model, "MaterialDialog", "Open model", "Model file (*.obj;*.fbx){.obj,.fbx},.*");
-		}
+		std::string text;
+
+		text = (model) ? model->name : "None";
+		ImGui::Text("Model: %s", text.c_str());
+		Editor::GetDialogResource<Model>(model, "ModelDialog", "Open model", "Model file (*.obj;*.fbx){.obj,.fbx},.*");
+		
+		text = (material) ? material->name : "None";
+		ImGui::Text("Material: %s", text.c_str());
+		Editor::GetDialogResource<Material>(material, "MaterialDialog", "Open Material", "Model file (*.obj;*.fbx){.obj,.fbx},.*");
+		
 	}
 }

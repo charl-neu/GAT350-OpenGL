@@ -68,9 +68,6 @@
     <None Include="..\..\Build\Assets\Scenes\scene02.json">
       <Filter>Assets\Scenes</Filter>
     </None>
-    <None Include="..\..\Build\Assets\Materials\squirrel.mat">
-      <Filter>Assets\Materials</Filter>
-    </None>
     <None Include="..\..\Build\Assets\Materials\lava.mat">
       <Filter>Assets\Materials</Filter>
     </None>
@@ -121,6 +118,24 @@
     </None>
     <None Include="..\..\Build\Assets\Materials\refraction.mat">
       <Filter>Assets\Materials</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Materials\squirrel.mat">
+      <Filter>Assets\Materials</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Materials\rtt.mat">
+      <Filter>Assets\Materials</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Materials\ogre.mat">
+      <Filter>Assets\Materials</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\unlit.vert">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\unlit.prog">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\unlit.frag">
+      <Filter>Assets\Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
