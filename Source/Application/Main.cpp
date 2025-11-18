@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 
 	auto rendertexture = std::make_shared<neu::RenderTexture>();
 	rendertexture->Create(512, 512);
-	neu::Resources().AddResource<neu::Texture>("rendertexture", rendertexture);
+	neu::Resources().AddResource("rendertexture", rendertexture);
 
     auto scene = std::make_unique<neu::Scene>();
     scene->Load("scenes/scene02.json");
