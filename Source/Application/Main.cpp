@@ -40,9 +40,6 @@ int main(int argc, char* argv[]) {
         scene->Update(dt);
         editor->Begin();
         editor->UpdateGui(*scene);
-
-        neu::GetEngine().GetRenderer().Clear();
-
         scene->Draw(neu::GetEngine().GetRenderer());
 
 		ImGui::Render();
