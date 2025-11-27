@@ -26,5 +26,6 @@ namespace neu {
 		LightType u_lightType = LightType::Point;
 		float innerSpotAngle = 10.0f;
 		float outerSpotAngle = 10.0f;
+		bool shadowCaster = false;
 	};
 }

@@ -25,6 +25,23 @@ namespace neu {
 		}
 	}
 
+	void ModelRenderer::Draw(Renderer& renderer, Program& program) {
+		program.SetUniform("u_model", owner->transform.GetMatrix());
+
+		glDepthMask(enableDepth ? GL_TRUE : GL_FALSE);
+		if (cullFace != -1) {
+			glEnable(GL_CULL_FACE);
+			glCullFace(cullFace);
+		}
+		else {
+			glDisable(GL_CULL_FACE);
+		}
+
+		if (model) {
+			model->Draw(GL_TRIANGLES);
+		}
+	}
+
 	void ModelRenderer::Read(const serial_data_t& value) {
 		Object::Read(value);
 

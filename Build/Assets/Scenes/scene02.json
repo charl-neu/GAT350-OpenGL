@@ -1,5 +1,31 @@
 {
+	"postprocess": false,
 	"actors": [
+		{
+			"name": "light",
+			"persistent": true,
+			"transform": {
+				"position": [ 0, 10, 0 ],
+				"rotation": [ -90, 0, 0 ],
+				"scale": [ 1, 1, 1 ]
+			},
+			"components": [
+				{
+					"type": "LightComponent",
+					"lightType": "directional",
+					"color": [ 1, 1, 1 ],
+					"intensity": 1,
+					"range": 100,
+					"shadowCaster": true
+				},
+				{
+					"type": "CameraComponent",
+					"projectionType": "orthographic",
+					"shadowCamera": true,
+					"outputTexture": "shadowTexture"
+				}
+			]
+		},
 		{
 			"name": "skybox",
 			"persistent": true,
@@ -59,7 +85,7 @@
 			]
 		},
 		{
-			"name": "crate",
+			"name": "window",
 			"persistent": true,
 			"transform": {
 				"position": [
@@ -83,6 +109,35 @@
 					"type": "ModelRenderer",
 					"model": "Models/cube.obj",
 					"material": "Materials/rtt.mat"
+				}
+			]
+		},
+		{
+			"name": "postprocess",
+			"persistent": true,
+			"active": false,
+			"transform": {
+				"position": [
+					0,
+					0,
+					0
+				],
+				"rotation": [
+					0,
+					180,
+					0
+				],
+				"scale": [
+					1,
+					1,
+					1
+				]
+			},
+			"components": [
+				{
+					"type": "ModelRenderer",
+					"model": "Models/quad.obj",
+					"material": "Materials/postprocess.mat"
 				}
 			]
 		},
@@ -196,7 +251,11 @@
 			},
 			"components": [
 				{
-					"type": "CameraComponent"
+					"type": "CameraComponent",
+					"outputTexture": "postprocessTexture"
+				},
+				{
+					"type": "PostProcessComponent"
 				},
 				{
 					"type": "FirstPersonController",
@@ -207,22 +266,30 @@
 			]
 		},
 		{
-			"name": "light",
+			"name": "shadow",
 			"persistent": true,
 			"transform": {
-				"position": [ -5, 5, 0 ],
-				"rotation": [ 0, 0, 0 ],
-				"scale": [ 1, 1, 1 ]
+				"position": [
+					5,
+					3,
+					0
+				],
+				"rotation": [
+					0,
+					180,
+					0
+				],
+				"scale": [
+					1,
+					1,
+					1
+				]
 			},
 			"components": [
 				{
-					"type": "LightComponent",
-					"color": [ 1, 1, 1 ],
-					"intensity": 1,
-					"range": 100,
-					"lightType": "spot",
-					"innerSpotAngle": 10,
-					"outerSpotAngle": 180
+					"type": "ModelRenderer",
+					"model": "Models/cube.obj",
+					"material": "Materials/shadow.mat"
 				}
 			]
 		}

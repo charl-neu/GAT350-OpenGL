@@ -1,5 +1,5 @@
 {
-	"program" : "Shaders/litphong.prog",
+	"program" : "Shaders/litphongshadow.prog",
 	"baseMap": "Textures/spot_diffuse.png",
 	"baseColor": [1, 1, 1],
 	"shininess" : 16,

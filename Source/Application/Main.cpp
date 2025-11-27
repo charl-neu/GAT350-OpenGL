@@ -15,6 +15,14 @@ int main(int argc, char* argv[]) {
 	rendertexture->Create(512, 512);
 	neu::Resources().AddResource("rendertexture", rendertexture);
 
+    rendertexture = std::make_shared<neu::RenderTexture>();
+	rendertexture->Create(1024, 1024);
+	neu::Resources().AddResource("postprocessTexture", rendertexture);
+
+    rendertexture = std::make_shared<neu::RenderTexture>();
+	rendertexture->CreateDepth(1024, 1024);
+	neu::Resources().AddResource("shadowTexture", rendertexture);
+
     auto scene = std::make_unique<neu::Scene>();
     scene->Load("scenes/scene02.json");
     scene->Start();

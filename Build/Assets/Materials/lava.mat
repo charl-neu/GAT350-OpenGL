@@ -1,10 +1,9 @@
 {
-	"program": "Shaders/litphong.prog",
-	"baseMap": "Textures/lava_base.png",
+	"program": "Shaders/litphongshadow.prog",
+	"baseMap": "Textures/rocks_base.jpg",
 	"baseColor": [ 1, 1, 1 ],
-	"emissiveMap": "Textures/lava_emissive.png",
-	"emissiveColor": [ 1, 1, 1 ],
-	"normalMap": "Textures/lava_normal.png",
+	"normalMap": "Textures/rocks_normal.jpg",
+	"shadowMap": "shadowTexture",
 	"shininess": 16,
 	"tiling": [ 10, 10 ],
 	"offset": [ 0, 0 ]

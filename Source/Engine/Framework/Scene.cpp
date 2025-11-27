@@ -58,6 +58,7 @@ namespace neu {
     void Scene::UpdateGui()
     {
         ImGui::ColorEdit3("Ambient", glm::value_ptr(m_ambientLight));
+		ImGui::Checkbox("Post Process", &m_postprocess);
     }
 
     /// <summary>
@@ -107,17 +108,48 @@ namespace neu {
 
 		std::vector<Program*> programs(programSet.begin(), programSet.end());
 
+        // get shadow camera projection view matrix
+        auto shadowCamera = std::find_if(cameras.begin(), cameras.end(),
+            [](auto camera) { return camera->shadowCamera; });
+        if (*shadowCamera) {
+            glm::mat4 biasMatrix(
+                0.5, 0.0, 0.0, 0.0,
+                0.0, 0.5, 0.0, 0.0,
+                0.0, 0.0, 0.5, 0.0,
+                0.5, 0.5, 0.5, 1.0
+            );
+            glm::mat4 shadowvp = biasMatrix * (*shadowCamera)->projection * (*shadowCamera)->view;
+            for (auto& program : programs) {
+                program->Use();
+                program->SetUniform("u_shadow_vp", shadowvp);
+            }
+        }
 
         for (auto camera : cameras) {
-			if (camera->outputTexture) {
+            PostProcessComponent* postprocessComponent = camera->owner->GetComponent<PostProcessComponent>();
+            bool renderTexture = camera->outputTexture && (!postprocessComponent || (postprocessComponent && m_postprocess));
+			if (renderTexture) {
                 camera->outputTexture->BindFramebuffer();
 				glViewport(0, 0, camera->outputTexture->m_size.x, camera->outputTexture->m_size.y);
             }
 			camera->Clear();
+
+
             DrawPass(renderer, programs, lights, camera);
             if (camera->outputTexture) {
 				camera->outputTexture->UnbindFramebuffer();
 				glViewport(0, 0, renderer.GetWidth(), renderer.GetHeight());
+            }
+
+            if (renderTexture && postprocessComponent) {
+                camera->Clear();
+
+                auto postProcessProgram = Resources().Get<Program>("Shaders/postprocess.prog");
+                postProcessProgram->Use();
+                postprocessComponent->Apply(*postProcessProgram);
+                camera->outputTexture->Bind();
+                auto actor = GetActorByName("postprocess");
+                actor->Draw(renderer);
             }
 		}
     }
@@ -308,6 +340,8 @@ namespace neu {
         // Load base Object properties first (name, active, etc.)
         // This calls the parent class's Read() implementation
         //Object::Read(value);
+		SERIAL_READ_NAME(value, "ambientLight", m_ambientLight);
+		SERIAL_READ_NAME(value, "postprocess", m_postprocess);
 
         // SECTION 1: Process prototype definitions
         // Check if the serialized data contains a "prototypes" section

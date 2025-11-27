@@ -72,7 +72,7 @@ vec3 calculateLight(in Light light, vec3 position, in vec3 normal)
 			}
 		break;
 		case DIRECTIONAL:
-			light_dir = light.direction;
+			light_dir = -light.direction;
 		break;
 		case SPOT:
 			{

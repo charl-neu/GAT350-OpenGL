@@ -215,6 +215,7 @@
     <ClCompile Include="Components\FirstPersonController.cpp" />
     <ClCompile Include="Components\LightComponent.cpp" />
     <ClCompile Include="Components\ModelRenderer.cpp" />
+    <ClCompile Include="Components\PostProcessComponent.cpp" />
     <ClCompile Include="Core\File.cpp" />
     <ClCompile Include="Core\Json.cpp" />
     <ClCompile Include="Core\Time.cpp" />
@@ -252,6 +253,7 @@
     <ClInclude Include="Components\FirstPersonController.h" />
     <ClInclude Include="Components\LightComponent.h" />
     <ClInclude Include="Components\ModelRenderer.h" />
+    <ClInclude Include="Components\PostProcessComponent.h" />
     <ClInclude Include="Components\RendererComponent.h" />
     <ClInclude Include="Core\Assert.h" />
     <ClInclude Include="Core\Factory.h" />
