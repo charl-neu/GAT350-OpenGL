@@ -47,9 +47,8 @@ The goal of the project is to provide a clear reference implementation of a ligh
 
 Ensure the following dependencies are installed on your system:
 
-* **CMake** (3.10+)
 * **C++20-compatible compiler**
-* **OpenGL** (3.3+ recommended)
+* **OpenGL** 
 * **SDL3**
 * **glm**
 
